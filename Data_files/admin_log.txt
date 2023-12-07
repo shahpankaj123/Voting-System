@@ -8,5 +8,10 @@
     "id": "14db802c-657b-404b-bca1-3097d6269902",
     "username": "isha",
     "password": "Isha24681"
+  },
+  {
+    "id": "e0c4f726-fc58-4e9f-a193-26ae4db350b8",
+    "username": "Admin1",
+    "password": "Admin12345"
   }
 ]

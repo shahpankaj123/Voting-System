@@ -6,7 +6,7 @@ import json
 class Admin(AdminAbstract):
     def __init__(self):
         current_directory = os.path.dirname(os.path.abspath(__file__))
-        filename='data_files/admin_log1.txt'
+        filename='data_files/admin_log.txt'
         self.file_path = os.path.join(current_directory, filename)
         filename1='data_files/schedule.txt'
         self.file_path1 = os.path.join(current_directory, filename1)
@@ -14,6 +14,7 @@ class Admin(AdminAbstract):
         self.file_path2 = os.path.join(current_directory, filename2)
 
     def create_admin(self):
+        try:
           if self.admin_login():
             id=str(uuid.uuid4())
             username=input("enter the username:")
@@ -23,9 +24,10 @@ class Admin(AdminAbstract):
                 data={"id":id,"username":username,"password":password}
                 try: 
                   with open(self.file_path, 'r') as file:
-                    self.existing_data=json.load(file)    
+                    self.existing_data=json.load(file) 
                 except FileNotFoundError:
-                   print("File Name not found")    
+                   print("File Name not found")  
+
 
                 print(self.existing_data)
                 self.existing_data.append(data)
@@ -36,15 +38,19 @@ class Admin(AdminAbstract):
                 print("Please Make Strong Password") 
           else:
               print("Username or Password not matched")                                 
-        
+        except Exception as e:
+           print(e)
 
     def admin_login(self):
         try:
             print("---Admin Login System ---")
             username=input("enter the username:")
-            password=input("enter the password:")     
-            with open(self.file_path, 'r') as file:
-                self.existing_data=json.load(file)
+            password=input("enter the password:") 
+            try:
+               with open(self.file_path, 'r') as file:
+                 self.existing_data=json.load(file)
+            except FileNotFoundError:
+                print("File Name not found")     
 
             data=[list for list in self.existing_data if list['username']==username and list['password']==password]
             if data:
@@ -62,9 +68,11 @@ class Admin(AdminAbstract):
             Constituency=input("enter the Constituency name:")
             date=input("enter the date of election(YYYY-MM-DD)")
             data={"Constituency":Constituency,"Date":date}
-
-            with open(self.file_path1, 'r') as file:
+            try:
+             with open(self.file_path1, 'r') as file:
                 self.schedule_data=json.load(file)
+            except FileNotFoundError:
+                print("File Name not found")    
 
             self.schedule_data.append(data)
 
@@ -86,9 +94,11 @@ class Admin(AdminAbstract):
             party=input("enter the political party")
             candidacy_location=input("enter the Candidacy From")
             data={"id":id,"name":name,"party":party,"candidacy_location":candidacy_location}
-
-            with open(self.file_path2, 'r') as file:
+            try:
+              with open(self.file_path2, 'r') as file:
                 self.candidacy_data=json.load(file)
+            except FileNotFoundError:
+                print("File Name not found")    
 
             self.candidacy_data.append(data)
 
@@ -98,9 +108,7 @@ class Admin(AdminAbstract):
             print("Candidate registration Successfully")
 
           else:
-            print("You are not authorired to schedule a election")     
-
-
+            print("You are not authorired to schedule a election")  
 
         except Exception as e:
             print(e)
@@ -109,12 +117,15 @@ class Admin(AdminAbstract):
         try:
           if self.admin_login():
             id=input('enter the id of candidate:')
-
-            with open(self.file_path2, 'r') as file:
+            try:
+              with open(self.file_path2, 'r') as file:
                 self.candidacy_data=json.load(file)
+            except FileNotFoundError:
+                 print("File Name not found")
+
             g=False    
             for data in self.candidacy_data:
-               if data['id']==id:
+                if data['id']==id:
                    name=input("enter the name of candicate:")
                    party=input("enter the political party")
                    candidacy_location=input("enter the Candidacy From") 
@@ -122,7 +133,7 @@ class Admin(AdminAbstract):
                    data['party']=party
                    data['candidacy_location']=candidacy_location
                    g=True
-               else:
+                else:
                   print('Id not Found')    
 
             if g==True: 
@@ -136,9 +147,12 @@ class Admin(AdminAbstract):
         try:
           if self.admin_login():
             id=input('enter the id of candidate:')
-
-            with open(self.file_path2, 'r') as file:
+            try:
+              with open(self.file_path2, 'r') as file:
                 self.candidacy_data=json.load(file)
+            except FileNotFoundError:
+                print("File Name not found")
+
             for data in self.candidacy_data:
                 if data['id'] == id:
                   self.candidacy_data.remove(data)
@@ -152,9 +166,13 @@ class Admin(AdminAbstract):
         except Exception as e:
            print(e)     
                      
+
 a=Admin()
 a.create_admin()
-
+a.election_schedule()
+a.canditate_registration()
+a.update_canditate()
+a.del_canditate()
 
         
 
