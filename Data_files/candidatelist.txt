@@ -1,0 +1,8 @@
+[
+  {
+    "id": "0cfe029a-3fbb-485c-910f-6a00a9973ba5",
+    "name": "Shyam1",
+    "party": "NC",
+    "candidacy_location": "Pokhara"
+  }
+]
