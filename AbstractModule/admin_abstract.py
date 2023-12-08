@@ -2,6 +2,11 @@ from abc import ABC, abstractmethod
 
 class AdminAbstract(ABC):
     @abstractmethod
+    def generate_id(self):
+        '''generate unique id'''
+        pass
+    
+    @abstractmethod
     def create_admin(self):
         '''admin can create new admin'''
         pass

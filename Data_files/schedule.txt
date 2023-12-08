@@ -6,5 +6,9 @@
   {
     "Constituency": "Gorkha",
     "Date": "2023-12-20"
+  },
+  {
+    "Constituency": "Lalitpur",
+    "Date": "2023-12-20"
   }
 ]

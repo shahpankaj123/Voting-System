@@ -1,27 +1,8 @@
 [
   {
-<<<<<<< HEAD
-    "id": "1",
-    "name": "Shyam1",
-    "party": "NC",
-    "candidacy_location": "Pokhara"
-  },
-  {
-    "id": "2",
-    "name": "Hari",
-    "party": "NC",
-    "candidacy_location": "Pokhara"
-  },
-  {
-    "id": "3",
-    "name": "Lal",
-    "party": "NC",
-    "candidacy_location": "Pokhara"
-=======
-    "id": "041c9f30-ec0f-4304-9bcf-0f7d18a31861",
-    "name": "Gopal",
-    "party": "LP",
-    "candidacy_location": "Banke"
->>>>>>> 5d30993f90d8731865c105f125a8e9d3a77d10f8
+    "id": 2,
+    "name": "shyam",
+    "party": "tc",
+    "candidacy_location": "ktm"
   }
 ]

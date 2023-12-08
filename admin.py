@@ -5,14 +5,29 @@ import os
 import json
 class Admin(AdminAbstract):
     def __init__(self):
-        current_directory = os.path.dirname(os.path.abspath(__file__))
+        self.current_directory = os.path.dirname(os.path.abspath(__file__))
         filename='data_files/admin_log.txt'
-        self.file_path = os.path.join(current_directory, filename)
+        self.file_path = os.path.join(self.current_directory, filename)
         filename1='data_files/schedule.txt'
-        self.file_path1 = os.path.join(current_directory, filename1)
+        self.file_path1 = os.path.join(self.current_directory, filename1)
         filename2='data_files/candidatelist.txt'
-        self.file_path2 = os.path.join(current_directory, filename2)
+        self.file_path2 = os.path.join(self.current_directory, filename2)
 
+    def generate_id(self) -> int: 
+        file_path = os.path.join(self.current_directory, "LogFiles", "candidate_id.log")     
+        try:
+            with open(file_path, "r") as file:
+                id = int(file.read())
+        except FileNotFoundError:
+            with open(file_path, "w+") as file:
+                id = 0
+                file.write(str(id))
+
+        id +=1
+        with open(file_path, 'r+') as file:
+            file.write(str(id))
+        return id
+    
     def create_admin(self):
         try:
           if self.admin_login():
@@ -89,7 +104,7 @@ class Admin(AdminAbstract):
     def canditate_registration(self):
         try:
           if self.admin_login():
-            id=str(uuid.uuid4())
+            id=self.generate_id()
             name=input("enter the name of candicate:")
             party=input("enter the political party")
             candidacy_location=input("enter the Candidacy From")
@@ -116,7 +131,7 @@ class Admin(AdminAbstract):
     def update_canditate(self):
         try:
           if self.admin_login():
-            id=input('enter the id of candidate:')
+            id=int(input('enter the id of candidate:'))
             try:
               with open(self.file_path2, 'r') as file:
                 self.candidacy_data=json.load(file)
@@ -146,7 +161,7 @@ class Admin(AdminAbstract):
     def del_canditate(self):
         try:
           if self.admin_login():
-            id=input('enter the id of candidate:')
+            id=int(input('enter the id of candidate:'))
             try:
               with open(self.file_path2, 'r') as file:
                 self.candidacy_data=json.load(file)
@@ -167,17 +182,7 @@ class Admin(AdminAbstract):
            print(e)     
                      
 
-a=Admin()
-a.create_admin()
-<<<<<<< HEAD
-a.canditate_registration()
 
-=======
-a.election_schedule()
-a.canditate_registration()
-a.update_canditate()
-a.del_canditate()
->>>>>>> 5d30993f90d8731865c105f125a8e9d3a77d10f8
 
         
 
