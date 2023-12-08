@@ -20,6 +20,11 @@ class AdminAbstract(ABC):
     def canditate_registration(self):
         """Admin can register the canditate for the election"""
         pass
+    
+    @abstractmethod
+    def update_canditate():
+        '''Admin can update the details of canditate of the election'''
+        pass
 
     @abstractmethod
     def del_canditate(self):
