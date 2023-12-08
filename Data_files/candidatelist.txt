@@ -1,7 +1,19 @@
 [
   {
-    "id": "0cfe029a-3fbb-485c-910f-6a00a9973ba5",
+    "id": "1",
     "name": "Shyam1",
+    "party": "NC",
+    "candidacy_location": "Pokhara"
+  },
+  {
+    "id": "2",
+    "name": "Hari",
+    "party": "NC",
+    "candidacy_location": "Pokhara"
+  },
+  {
+    "id": "3",
+    "name": "Lal",
     "party": "NC",
     "candidacy_location": "Pokhara"
   }

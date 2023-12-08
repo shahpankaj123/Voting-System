@@ -154,6 +154,7 @@ class Admin(AdminAbstract):
                      
 a=Admin()
 a.create_admin()
+a.canditate_registration()
 
 
         
